@@ -1,0 +1,138 @@
+{
+  "users": [
+    {
+      "id": "5071",
+      "name": "Rudra Sharan",
+      "email": "Rudra2@gmail.com",
+      "password": "abcd@1212"
+    },
+    {
+      "id": "3a9a",
+      "name": "Rudra",
+      "email": "RudraSharan27@gmail.com",
+      "password": "Rudraa"
+    },
+    {
+      "id": "afc3",
+      "name": "Anand Raj",
+      "email": "AnandRaj15@gmail.com",
+      "password": "Anand@123"
+    },
+    {
+      "id": "07fd",
+      "name": "Petter",
+      "email": "Petter@gmail.com",
+      "password": "Anurag"
+    },
+    {
+      "id": "c7b5",
+      "name": "john",
+      "email": "john@test.com",
+      "password": "john@123"
+    },
+    {
+      "id": "2045",
+      "name": "sandy",
+      "email": "sandy12@gmail.com",
+      "password": "Sandy@14"
+    },
+    {
+      "id": "e98f",
+      "name": "Rudra Sharan",
+      "email": "Rudrasharan15@gmail.com",
+      "password": "Rudra@106"
+    },
+    {
+      "id": "7f51",
+      "name": "Anand Raj",
+      "email": "AnandRaj14@gmail.com",
+      "password": "Anand@14"
+    },
+    {
+      "id": "7b79",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "96ba",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "40d6",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "211b",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "0dd4",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "42be",
+      "name": "Satyam Kumar",
+      "email": "satyamkumar11@gmail.com",
+      "password": "satyam@11"
+    }
+  ],
+  "restaurant": [
+    {
+      "id": "1",
+      "name": "KFC",
+      "address": "Noida Sector 50",
+      "contact": 9123456789
+    },
+    {
+      "id": "2",
+      "name": "Dominose",
+      "address": "Gaya Sector 55",
+      "contact": 9123456788
+    },
+    {
+      "id": "3",
+      "name": "Burger King",
+      "address": "Pune Banner",
+      "contact": 9123456787
+    },
+    {
+      "id": "4",
+      "name": "Lappinoz",
+      "address": "Patna",
+      "contact": 9123456786
+    },
+    {
+      "id": "5",
+      "name": "StarBuck",
+      "address": "Banglore",
+      "contact:no": 9123456786
+    },
+    {
+      "id": "d824",
+      "name": "Mc D",
+      "address": "Mumbai",
+      "contact": "7896541233"
+    },
+    {
+      "id": "2c19",
+      "name": "Mc D",
+      "address": "Delhi ",
+      "contact": "2589631478"
+    },
+    {
+      "id": "7e3c",
+      "name": "Subway",
+      "address": "Delhi ",
+      "contact": "12558855"
+    }
+  ]
+}
