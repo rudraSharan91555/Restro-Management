@@ -1,7 +1,7 @@
 <template>
-  <HeaderComp />
+  <HeaderComp/>
   <h1>Hello User,Welcome on Update Resturant Page</h1>
-  <form class="update">
+  <form class="add">
     <input
       type="text"
       placeholder="Enter Name"
@@ -20,17 +20,16 @@
       v-model="restaurant.contact"
       name="contact"
     />
-    <button type="button" v-on:click="updateRestaurant">Update Restaurant</button>
-  </form>
+    <button type="button" v-on:click="updateResturant">Update Resturant</button>
+  </form>  
 </template>
 <script>
-import axios from "axios";
-import HeaderComp from "./HeaderComp.vue";
-// import HeaderComp from "./HeaderComp.vue";
-export default {
-  name: "UpdateComp",
-  components: {
-    HeaderComp,
+import HeaderComp from './HeaderComp.vue';
+import axios from 'axios';
+export default{
+  name:'UpdateCom',
+  components:{
+    HeaderComp
   },
   data() {
     return {
@@ -42,41 +41,35 @@ export default {
     };
   },
   methods:{
-    async updateRestaurant()
+    async updateResturant()
     {
       const result = await axios.put("http://localhost:3000/restaurant/"+this.$route.params.id,{
-            name:this.restaurant.name,
-            address:this.restaurant.address,
-            contact:this.restaurant.contact
-        });
-        if(result.status == 20)
-        {
-          this.$router.push({name:'HomeComp'});
-        }
-    }
-  },  
-  async mounted() {
-    let user = localStorage.getItem("user-info");
-    if (!user) {
-      this.$router.push({ name: "SignUp" });
-    }
-
-    try {
-      const result = await axios.get(
-        "http://localhost:3000/restaurant/" + this.$route.params.id
-      );
-
-      this.restaurant = result.data;
-    } catch (error) {
-      console.error("Error fetching restaurant data:", error);
-      
+        name:this.restaurant.name,
+        address:this.restaurant.address,
+        contact:this.restaurant.contact,
+      });
+      if(result.status ==200)
+      {
+        this.$router.push({name:'HomeComp'})
+      }
     }
   },
-};
+  async mounted()
+  {
+    let user = localStorage.getItem('user-info');
+    if(!user){
+      this.$router.push({name:'SignUp'})
+    }
+    const result = await axios.get("http://localhost:3000/restaurant/"+this.$route.params.id)
+    this.restaurant=result.data
+    
+  }
+}
 </script>
 
+
 <style scoped>
-.update {
+.add {
   max-width: 600px;
   margin: 50px auto;
   padding: 20px;

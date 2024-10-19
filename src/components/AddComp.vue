@@ -1,6 +1,6 @@
 <template>
   <HeaderComp />
-  <h1>Hello User,Welcome on Add ResturantPage</h1>
+  <h1>Hello User,Welcome on Add New ResturantPage</h1>
   <form class="add">
     <input
       type="text"
@@ -20,7 +20,7 @@
       v-model="restaurant.contact"
       name="contact"
     />
-    <button type="button" v-on:click="addResturant">Add New resturant</button>
+    <button type="button" v-on:click="addResturant">Add New Resturant</button>
   </form>
 </template>
 
@@ -65,6 +65,21 @@ export default {
 </script>
 
 <style scoped>
+
+body {
+  background-color: #f0ece2; 
+  font-family: 'Arial', sans-serif; 
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #4caf50;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+
 .add {
   max-width: 600px;
   margin: 50px auto;
