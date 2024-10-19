@@ -131,7 +131,7 @@ h1 {
   }
   
   .restaurant-cards {
-    display: block; /
+    display: block; 
   }
 
   .restaurant-card h3,
