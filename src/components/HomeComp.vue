@@ -1,118 +1,157 @@
 <template>
-  <HeaderComp/>
-  <h1>Hello {{ name }}, Welcome on Home Page </h1>
-  <table>
-    <tr>
-      <td>Id</td>
-      <td>Name</td>
-      <td>Address</td>
-      <td>Contact</td>
-      <td>Actions</td>
-    </tr>
-    <tr v-for="item in restaurants" :key="item.id">
-      <td>{{ item.id }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.address }}</td>
-      <td>{{ item.contact }}</td>
-      <!-- <td><router-link :to="'/UpdateComp/'+item.id">Update</router-link></td> -->
-      <td>Update</td>
-    </tr>
-  </table>
+  <HeaderComp />
+  <h1>Hello User, Welcome to the Update Restaurant Page</h1>
+  <form class="update" @submit.prevent="updateResturant"> <!-- Changed to submit -->
+    <input
+      type="text"
+      placeholder="Enter Name"
+      v-model="restaurant.name"
+      name="name"
+    />
+    <input
+      type="text"
+      placeholder="Address"
+      v-model="restaurant.address"
+      name="address"
+    />
+    <input
+      type="text"
+      placeholder="Contact"
+      v-model="restaurant.contact"
+      name="contact"
+    />
+    <button type="submit">Update Restaurant</button> <!-- Changed to submit -->
+  </form>
 </template>
 
 <script>
-import axios from 'axios';
-import HeaderComp from './HeaderComp.vue';
+import axios from "axios";
+import HeaderComp from "./HeaderComp.vue";
+
 export default {
-  name: "HomeComp",
-  data(){
-    return{
-      name:'',
-      restaurants:[],
-    }
+  name: "UpdateComp",
+  components: {
+    HeaderComp,
   },
-  components:{
-    HeaderComp
+  data() {
+    return {
+      restaurant: {
+        name: "",
+        address: "",
+        contact: "",
+      },
+    };
   },
-  async mounted()
-    {
-        let user =localStorage.getItem('user-info')
-        this.name = JSON.parse(user).name
-        if(!user){
-            this.$router.push({name:'SignUp'})
+  methods: {
+    async updateResturant() {
+      console.log("Update Restaurant button clicked");
+      console.log("Restaurant ID:", this.$route.params.id); // Debugging
+      try {
+        const result = await axios.put("http://localhost:3000/resturant/" + this.$route.params.id, {
+          name: this.restaurant.name,
+          address: this.restaurant.address,
+          contact: this.restaurant.contact,
+        });
+
+        console.log("Response from API:", result); // Debugging
+
+        if (result.status === 200) {
+          this.$router.push({ name: 'HomeComp' });
         }
-        let result = await axios.get("http://localhost:3000/restaurant") ; 
-        console.warn(result)
-        this.restaurants = result.data      
+      } catch (error) {
+        console.error("Error updating restaurant:", error);
+      }
     }
+  },
+  async mounted() {
+    let user = localStorage.getItem("user-info");
+    if (!user) {
+      this.$router.push({ name: "SignUp" });
+    }
+
+    try {
+      const result = await axios.get(
+        "http://localhost:3000/restaurant/" + this.$route.params.id
+      );
+
+      this.restaurant = result.data;
+    } catch (error) {
+      console.error("Error fetching restaurant data:", error);
+    }
+  },
 };
 </script>
 
 <style scoped>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 1rem;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.update {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"]:hover {
+  border-color: #4caf50;
+  background-color: #f9f9f9;
+}
+
+input[type="text"]:hover::placeholder {
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .add {
+    padding: 15px;
+    width: 90%;
   }
 
-  th, td {
-    padding: 12px 15px;
-    text-align: left;
+  button {
+    padding: 10px;
   }
 
-  thead {
-    background-color: #4CAF50;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 600;
-    border-bottom: 2px solid #dddddd;
+  input[type="text"] {
+    padding: 10px;
   }
-
-  tr {
-    border-bottom: 1px solid #dddddd;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-
-  tr:hover {
-    background-color: #e0f7fa;
-    transform: scale(1.02);
-  }
-
-  td {
-    color: #333;
-  }
-
-  td:last-child {
-    text-align: center;
-  }
-
-  th, td:first-child {
-    border-right: 1px solid #dddddd;
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-
-  tbody tr:nth-child(odd) {
-    background-color: #fff;
-  }
-
- 
-  tr:hover {
-    cursor: pointer;
-    background-color: #d1c4e9;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-  }
-
-  td {
-    transition: color 0.3s ease;
-  }
-
-  td:hover {
-    color: #4CAF50;
-  }
+}
 </style>

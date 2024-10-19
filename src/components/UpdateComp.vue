@@ -20,7 +20,7 @@
       v-model="restaurant.contact"
       name="contact"
     />
-    <button type="button" v-on:click="updateResturant">Update Resturant</button>
+    <button type="button" v-on:click="updateRestaurant">Update Restaurant</button>
   </form>
 </template>
 <script>
@@ -42,11 +42,11 @@ export default {
     };
   },
   methods:{
-    async updateResturant()
+    async updateRestaurant()
     {
-      const result = await axios.put("http://localhost:3000/resturant/"+this.$route.params.id,{
+      const result = await axios.put("http://localhost:3000/restaurant/"+this.$route.params.id,{
             name:this.restaurant.name,
-            address:this.resturant.address,
+            address:this.restaurant.address,
             contact:this.restaurant.contact
         });
         if(result.status == 20)

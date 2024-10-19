@@ -115,11 +115,7 @@ export default {
         <input type="text" v-model="email" placeholder="Enter Email" />
       </div>
       <div class="inputBox">
-        <input
-          type="password"
-          v-model="password"
-          placeholder="Enter Password"
-        />
+        <input type="password" v-model="password" placeholder="Enter Password" />
       </div>
       <div class="inputBox">
         <button @click="login">Login</button>
@@ -165,7 +161,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -206,7 +202,7 @@ section .trees {
 
 section .girl {
   position: absolute;
-  scale: 0.65;
+  transform: scale(0.65);
   pointer-events: none;
   animation: animateGirl 10s linear infinite;
 }
@@ -228,14 +224,15 @@ section .girl {
 
 .login {
   position: relative;
-  padding: 60px;
+  padding: 40px; 
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(15px);
   border: 1px solid #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  width: 500px;
+  width: 90%; 
+  max-width: 500px; 
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -246,7 +243,7 @@ section .girl {
   position: relative;
   width: 100%;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 2em; 
   font-weight: 600;
   color: #8f2c24;
   margin-bottom: 10px;
@@ -261,41 +258,43 @@ section .girl {
   width: 100%;
   padding: 15px 20px;
   outline: none;
-  font-size: 1.25em;
+  font-size: 1em; 
   color: #8f2c24;
   border-radius: 5px;
   background: #fff;
   border: none;
-  margin-bottom: 30px;
+  margin-bottom: 20px; 
 }
 
 .login .inputBox ::placeholder {
   color: #8f2c24;
 }
 
-.login .inputBox #btn {
+.login .inputBox button {
   position: relative;
   border: none;
   outline: none;
   background: #8f2c24;
   color: #fff;
   cursor: pointer;
-  font-size: 1.25em;
+  font-size: 1em; 
   font-weight: 500;
   transition: 0.5s;
+  padding: 10px 0; 
+  border-radius: 5px; 
 }
 
-.login .inputBox #btn:hover {
+.login .inputBox button:hover {
   background: #d64c42;
 }
 
 .login .group {
   display: flex;
   justify-content: space-between;
+  font-size: 0.9em; 
 }
 
 .login .group a {
-  font-size: 1.25em;
   color: #8f2c24;
   font-weight: 500;
   text-decoration: none;
@@ -397,8 +396,57 @@ section .girl {
     transform: translateX(20px) rotate(225deg);
   }
 }
+
 .error {
   color: red;
   font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+  .login {
+    padding: 30px; 
+  }
+
+  .login h2 {
+    font-size: 2em; 
+  }
+
+  .login .inputBox input,
+  .login .inputBox button {
+    font-size: 1em; 
+  }
+
+  .login .group {
+    font-size: 0.85em; 
+  }
+
+  .girl {
+    scale: 0.55;
+  }
+}
+
+@media (max-width: 480px) {
+  .login {
+    padding: 20px; 
+    gap: 20px; 
+  }
+
+  .login h2 {
+    font-size: 1.5em; 
+  }
+
+  .login .inputBox input,
+  .login .inputBox button {
+    font-size: 0.9em; 
+  }
+
+  .login .group {
+    font-size: 0.75em; 
+  }
+
+  .girl {
+    scale: 0.45; 
+  }
 }
 </style>

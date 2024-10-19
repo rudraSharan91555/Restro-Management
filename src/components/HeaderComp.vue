@@ -1,20 +1,31 @@
 <template>
     <div class="nav">
-        <router-link to="/">Home</router-link>
-        <router-link to="AddComp">Add Restaurant</router-link>
-        <!-- <router-link to="UpdateComp">Update Restaurant</router-link> -->
-        <a v-on:click="logout" href="#">Log Out</a>
+        <div class="hamburger" @click="toggleMenu">
+            &#9776; 
+        </div>
+        <div :class="{'nav-links': true, 'active': menuActive}">
+            <router-link to="/" class="nav-link">Home</router-link>
+            <router-link to="AddComp" class="nav-link">Add Restaurant</router-link>
+            <a v-on:click="logout" href="#" class="nav-link">Log Out</a>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'HeaderComp',
-    methods:{
-        logout()
-        {
+    data() {
+        return {
+            menuActive: false
+        };
+    },
+    methods: {
+        toggleMenu() {
+            this.menuActive = !this.menuActive;
+        },
+        logout() {
             localStorage.clear();
-            this.$router.push({name:'LoginComp'})
+            this.$router.push({ name: 'LoginComp' });
         }
     }
 }
@@ -24,55 +35,82 @@ export default {
 .nav {
     background-color: #51667b; 
     border-bottom: 2px solid #ccc;
-    text-decoration: none;
-    overflow: hidden; 
     padding: 10px 0;
+    position: relative;
+    width: 100%; 
+    box-sizing: border-box; 
+    display: flex; 
+    align-items: center; 
 }
 
-.nav a {
-    float: left; 
-    display: block; 
+.hamburger {
+    display: none; 
+    font-size: 30px;
+    cursor: pointer;
     color: #0ff;
-    text-align: center; 
-    padding: 14px 16px;
-    text-decoration: none; 
-    font-size: 18px; 
-    position: relative; 
-    overflow: hidden; 
-    transition: color 0.3s; 
+    margin-right: auto; 
 }
 
-.nav a::before {
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%; 
+}
+
+.nav-link {
+    flex: 1; 
+    text-align: center; 
+    padding: 14px 0; 
+    color: #0ff; 
+    text-decoration: none; 
+    transition: color 0.3s, transform 0.3s; 
+    position: relative; 
+}
+
+.nav-link::after {
     content: ''; 
+    display: block; 
+    height: 2px; 
+    width: 0; 
+    background: #0ff; 
+    transition: width 0.3s; 
     position: absolute; 
     left: 50%; 
-    bottom: 0; 
-    width: 100%; 
-    height: 2px; 
-    text-decoration: none;
-    background: rgba(0, 255, 255, 0.6); 
+    bottom: -5px; 
     transform: translateX(-50%); 
-    transition: height 0.3s , background 0.3s;
-    animation: neon 1.5s infinite alternate; 
 }
 
-.nav a:hover {
-    color: #000; 
+.nav-link:hover {
+    color: #ccc; 
 }
 
-.nav a:hover::before {
-    height: 4px; 
-    text-decoration: none;
-    background: rgba(0, 255, 255, 1);}
-    
+.nav-link:hover::after {
+    width: 100%; 
+}
 
+.nav-links.active {
+    display: block; 
+}
 
-@keyframes neon {
-    0% {
-        box-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.6);
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; 
     }
-    100% {
-        box-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.8);
+    
+    .nav-links {
+        display: none; 
+        flex-direction: column; 
+        width: 100%; 
+    }
+    
+    .nav-links.active {
+        display: flex; 
+    }
+
+    .nav-links .nav-link {
+        text-align: left; 
+        padding: 10px; 
     }
 }
 </style>
