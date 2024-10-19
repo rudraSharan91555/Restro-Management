@@ -65,6 +65,24 @@
       "name": "Tejas",
       "email": "Tejas2@gmail.com",
       "password": "abcd@1212"
+    },
+    {
+      "id": "2813",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "749c",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "606f",
+      "name": "",
+      "email": "",
+      "password": ""
     }
   ],
   "restaurant": [
@@ -123,10 +141,22 @@
       "contact": "dw"
     },
     {
-      "id": "2d3b",
-      "name": "Tejas",
-      "email": "Tejas2@gmail.com",
-      "password": "abcd@1212"
+      "id": "da9f",
+      "name": "Mc D",
+      "address": "Delhi ",
+      "contact": "ee"
+    },
+    {
+      "id": "e6a8",
+      "name": "Rolls Mania",
+      "address": "Gujrat",
+      "contact": "8523697411"
+    },
+    {
+      "id": "1b63",
+      "name": "Momo Nation Cafe",
+      "address": "Gaya Ap Colony",
+      "contact": "9876325412"
     }
   ]
 }

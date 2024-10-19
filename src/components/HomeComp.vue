@@ -1,157 +1,149 @@
 <template>
   <HeaderComp />
-  <h1>Hello User, Welcome to the Update Restaurant Page</h1>
-  <form class="update" @submit.prevent="updateResturant"> <!-- Changed to submit -->
-    <input
-      type="text"
-      placeholder="Enter Name"
-      v-model="restaurant.name"
-      name="name"
-    />
-    <input
-      type="text"
-      placeholder="Address"
-      v-model="restaurant.address"
-      name="address"
-    />
-    <input
-      type="text"
-      placeholder="Contact"
-      v-model="restaurant.contact"
-      name="contact"
-    />
-    <button type="submit">Update Restaurant</button> <!-- Changed to submit -->
-  </form>
+  <h1>Hello {{ name }}, Welcome to the Home Page</h1>
+  <div class="table-container">
+    <table class="restaurant-table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact</th>
+      </tr>
+      <tr v-for="item in restaurants" :key="item.id">
+        <td class="id-cell">{{ item.id }}</td>
+        <td class="name-cell">{{ item.name }}</td>
+        <td class="address-cell">{{ item.address }}</td>
+        <td class="contact-cell">{{ item.contact }}</td>
+      </tr>
+    </table>
+    <div class="restaurant-cards">
+      <div v-for="item in restaurants" :key="item.id" class="restaurant-card">
+        <h3>ID: {{ item.id }}</h3>
+        <h4>Name: {{ item.name }}</h4>
+        <p>Address: {{ item.address }}</p>
+        <p>Contact: {{ item.contact }}</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
-import HeaderComp from "./HeaderComp.vue";
+import axios from 'axios';
+import HeaderComp from './HeaderComp.vue';
 
 export default {
-  name: "UpdateComp",
-  components: {
-    HeaderComp,
-  },
+  name: 'HomeComp',
   data() {
     return {
-      restaurant: {
-        name: "",
-        address: "",
-        contact: "",
-      },
-    };
-  },
-  methods: {
-    async updateResturant() {
-      console.log("Update Restaurant button clicked");
-      console.log("Restaurant ID:", this.$route.params.id); // Debugging
-      try {
-        const result = await axios.put("http://localhost:3000/resturant/" + this.$route.params.id, {
-          name: this.restaurant.name,
-          address: this.restaurant.address,
-          contact: this.restaurant.contact,
-        });
-
-        console.log("Response from API:", result); // Debugging
-
-        if (result.status === 200) {
-          this.$router.push({ name: 'HomeComp' });
-        }
-      } catch (error) {
-        console.error("Error updating restaurant:", error);
-      }
+      name: '',
+      restaurants: []
     }
+  },
+  components: {
+    HeaderComp
   },
   async mounted() {
-    let user = localStorage.getItem("user-info");
+    let user = localStorage.getItem('user-info');
+    this.name = JSON.parse(user).name;
     if (!user) {
-      this.$router.push({ name: "SignUp" });
+      this.$router.push({ name: 'SignUp' });
     }
-
-    try {
-      const result = await axios.get(
-        "http://localhost:3000/restaurant/" + this.$route.params.id
-      );
-
-      this.restaurant = result.data;
-    } catch (error) {
-      console.error("Error fetching restaurant data:", error);
-    }
-  },
-};
+    let result = await axios.get("http://localhost:3000/restaurant");
+    this.restaurants = result.data;
+  }
+}
 </script>
 
 <style scoped>
-.update {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.table-container {
+  overflow-x: auto; 
 }
 
-input[type="text"] {
+.restaurant-table {
   width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-input[type="text"]:focus {
-  border-color: #4caf50;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
-  outline: none;
-}
-
-button {
-  width: 100%;
-  padding: 12px 15px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-collapse: collapse;
   margin-top: 20px;
 }
 
-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.restaurant-table th,
+.restaurant-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease, font-weight 0.3s ease, transform 0.3s ease;
 }
 
-input[type="text"]:hover {
-  border-color: #4caf50;
+
+.id-cell:hover {
+  background-color: #ffcccb; 
+  font-weight: bold; 
+  transform: scale(1.1); 
+}
+
+.name-cell:hover {
+  background-color: #39ff14; 
+  font-weight: bold; 
+  transform: scale(1.1); 
+}
+
+.address-cell:hover {
+  background-color: #1e90ff; 
+  font-weight: bold; 
+  transform: scale(1.1); 
+}
+
+.contact-cell:hover {
+  background-color: #ffeb3b; 
+  font-weight: bold; 
+  transform: scale(1.1); 
+}
+
+.restaurant-table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.restaurant-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-input[type="text"]:hover::placeholder {
-  color: #888;
+h1 {
+  margin-bottom: 20px;
 }
 
+
+.restaurant-cards {
+  display: none; 
+}
+
+.restaurant-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px 0;
+}
+
+
 @media (max-width: 768px) {
-  .add {
-    padding: 15px;
-    width: 90%;
+  .restaurant-table {
+    display: none; 
+  }
+  
+  .restaurant-cards {
+    display: block; /
   }
 
-  button {
-    padding: 10px;
+  .restaurant-card h3,
+  .restaurant-card h4,
+  .restaurant-card p {
+    margin: 5px 0; 
   }
+}
 
-  input[type="text"] {
-    padding: 10px;
+@media (max-width: 480px) {
+  .restaurant-card {
+    padding: 12px; 
   }
 }
 </style>
