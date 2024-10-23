@@ -21,6 +21,7 @@
       name="contact"
     />
     <button type="button" v-on:click="updateResturant">Update Resturant</button>
+    <button type="button" class="back-btn" v-on:click="goBack">Back to Home</button>
   </form>  
 </template>
 <script>
@@ -52,7 +53,10 @@ export default{
       {
         this.$router.push({name:'HomeComp'})
       }
-      alert("Update Successfully")
+      alert("Update Suceeesfully")
+    },
+    goBack() {
+      this.$router.push({ name: 'HomeComp' }); 
     }
   },
   async mounted()
@@ -114,6 +118,17 @@ button {
 
 button:hover {
   background-color: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn {
+  background-color: #db665e;
+  margin-top: 10px;
+}
+
+.back-btn:hover {
+  background-color: #e53935;
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

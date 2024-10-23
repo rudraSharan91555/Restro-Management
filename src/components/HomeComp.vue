@@ -176,6 +176,7 @@ h1 {
   border-radius: 8px;
   padding: 16px;
   margin: 10px 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .card-actions {
@@ -222,6 +223,12 @@ h1 {
 
   .restaurant-cards {
     display: block;
+    background-color: #ffe0b3;
+  }
+  .restaurant-card:hover {
+    transform: scale(1.05); 
+    background-color: #ffd19a; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
   }
 
   .restaurant-card h3,
@@ -234,6 +241,12 @@ h1 {
 @media (max-width: 480px) {
   .restaurant-card {
     padding: 12px;
+    background-color: #59cb9f;
+  }
+  .restaurant-card:hover {
+    transform: scale(1.05); 
+    background-color: #e4d281; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
   }
 }
 
