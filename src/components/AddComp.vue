@@ -1,6 +1,7 @@
+
 <template>
   <HeaderComp />
-  <h1>Hello User,Welcome on Add New ResturantPage</h1>
+  <h1>Hello User, Welcome to the Add New Restaurant Page</h1>
   <form class="add">
     <input
       type="text"
@@ -16,17 +17,20 @@
     />
     <input
       type="text"
-      placeholder="Contact"
+      placeholder="Contact (10 digits)"
       v-model="restaurant.contact"
       name="contact"
+      maxlength="10"
+      @input="validateContact"
     />
-    <button type="button" v-on:click="addResturant">Add New Resturant</button>
+    <button type="button" v-on:click="addResturant">Add New Restaurant</button>
   </form>
 </template>
 
 <script>
 import axios from "axios";
 import HeaderComp from "./HeaderComp.vue";
+
 export default {
   name: "AddComp",
   components: {
@@ -39,21 +43,44 @@ export default {
         address: "",
         contact: "",
       },
+      errorMessage: '',
     };
   },
   methods: {
+    validateContact() {
+      
+      this.restaurant.contact = this.restaurant.contact.replace(/\D/g, '').slice(0, 10);
+    },
     async addResturant() {
-  console.warn(this.restaurant);
-  const result = await axios.post("http://localhost:3000/restaurant", {
-    name: this.restaurant.name,
-    address: this.restaurant.address, 
-    contact: this.restaurant.contact,
-  });
-  if (result.status == 201) {
-    this.$router.push({ name: 'HomeComp' });
-  }
-  console.warn("result", result);
-}
+      this.errorMessage = '';
+      if (!this.restaurant.name || !this.restaurant.address || !this.restaurant.contact) {
+        alert("Please fill all the input fields.");
+        return; 
+      }
+
+      
+      if (this.restaurant.contact.length !== 10) {
+        alert("Contact number must be exactly 10 digits.");
+        return;
+      }
+      
+      console.warn(this.restaurant);
+      try {
+        const result = await axios.post("http://localhost:3000/restaurant", {
+          name: this.restaurant.name,
+          address: this.restaurant.address,
+          contact: this.restaurant.contact,
+        });
+        if (result.status === 201) {
+          alert("Restaurant added successfully!");
+          this.$router.push({ name: 'HomeComp' });
+        }
+        console.warn("result", result);
+      } catch (error) {
+        console.error("Error adding restaurant:", error);
+        alert("There was an error adding the restaurant. Please try again.");
+      }
+    },
   },
   mounted() {
     let user = localStorage.getItem("user-info");
@@ -64,8 +91,8 @@ export default {
 };
 </script>
 
-<style scoped>
 
+<style scoped>
 body {
   background-color: #f0ece2; 
   font-family: 'Arial', sans-serif; 

@@ -65,24 +65,6 @@
       "name": "Tejas",
       "email": "Tejas2@gmail.com",
       "password": "abcd@1212"
-    },
-    {
-      "id": "2813",
-      "name": "",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "749c",
-      "name": "",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "606f",
-      "name": "",
-      "email": "",
-      "password": ""
     }
   ],
   "restaurant": [
@@ -117,10 +99,10 @@
       "id": "2c19"
     },
     {
-      "id": "7e3c",
       "name": "Subway",
       "address": "Delhi ",
-      "contact": "12558855"
+      "contact": "7858961249",
+      "id": "7e3c"
     },
     {
       "name": "Pizza Hut",
@@ -139,6 +121,12 @@
       "name": "Rolls Mania",
       "address": "Pune",
       "contact": "7788996325"
+    },
+    {
+      "id": "9000",
+      "name": "Subway",
+      "address": "Pune",
+      "contact": "7896541233"
     }
   ]
 }

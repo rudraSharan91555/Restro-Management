@@ -52,6 +52,7 @@ export default{
       {
         this.$router.push({name:'HomeComp'})
       }
+      alert("Update Successfully")
     }
   },
   async mounted()

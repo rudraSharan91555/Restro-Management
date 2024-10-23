@@ -31,11 +31,14 @@
         <h4>Name: {{ item.name }}</h4>
         <p>Contact: {{ item.contact }}</p>
         <p>Address: {{ item.address }}</p>
+        <div class="card-actions">
+          <router-link :to="'/UpdateComp/'+item.id" class="update-btn">Update</router-link>
+          <button v-on:click="deleteRestaurant(item.id)" class="delete-btn">Delete</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import axios from 'axios';
 import HeaderComp from './HeaderComp.vue';
@@ -57,6 +60,7 @@ export default {
       if(result.status == 200) {
         this.loadData();
       }
+      alert("Delet Successfully")
     },
     async loadData() {
       let user = localStorage.getItem('user-info');
@@ -89,7 +93,6 @@ h1 {
   background-color: #f7f3e9; 
 }
 
-
 .table-container {
   overflow-x: auto;
   padding: 20px;
@@ -97,7 +100,6 @@ h1 {
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .restaurant-table {
   width: 100%;
@@ -123,7 +125,6 @@ h1 {
   background-color: #f9f9f9; 
 }
 
-
 .id-cell:hover,
 .name-cell:hover,
 .contact-cell:hover,
@@ -132,7 +133,6 @@ h1 {
   font-weight: bold;
   transform: scale(1.05);
 }
-
 
 .update-btn, .delete-btn {
   padding: 8px 12px;
@@ -145,7 +145,6 @@ h1 {
   border: 1px solid #ccc; 
 }
 
-
 .update-btn {
   background-color: #4CAF50;
   color: white;
@@ -155,7 +154,6 @@ h1 {
   background-color: #45a049;
   transform: scale(1.05);
 }
-
 
 .delete-btn {
   background-color: #f44336;
@@ -180,6 +178,42 @@ h1 {
   margin: 10px 0;
 }
 
+.card-actions {
+  margin-top: 10px;
+}
+
+.card-actions .update-btn, .card-actions .delete-btn {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 6px 10px;
+  font-size: 0.9em;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-actions .update-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.card-actions .update-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.card-actions .delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: 1px solid #f44336;
+}
+
+.card-actions .delete-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
   .restaurant-table {
@@ -202,4 +236,5 @@ h1 {
     padding: 12px;
   }
 }
+
 </style>

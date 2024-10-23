@@ -1,5 +1,4 @@
-<!-- This template is using Json Data -->
-<!-- <template>
+<template>
   <section>
 		<div class="leaves">
 			<div class="set">
@@ -71,11 +70,11 @@ export default {
                     localStorage.setItem("user-info", JSON.stringify(result.data[0]));
                     this.$router.push({ name: "HomeComp" });
                 } else {
-                    this.errorMessage = 'Invalid email or password. Please try again.'; // Handle login failure
+                    this.errorMessage = 'Invalid email or password. Please try again.'; 
                 }
             } catch (error) {
                 console.error("Login error:", error);
-                this.errorMessage = 'An error occurred during login. Please try again.'; // Handle error
+                this.errorMessage = 'An error occurred during login. Please try again.';
             }
         }
   },
@@ -88,10 +87,10 @@ export default {
         
     }
 };
-</script> -->
+</script>
 
 
-<template>
+<!-- <template>
   <section>
     <div class="leaves">
       <div class="set">
@@ -159,7 +158,7 @@ export default {
     },
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 * {

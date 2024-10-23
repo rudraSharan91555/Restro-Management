@@ -1,6 +1,4 @@
-<!-- This template is base on Data  
-json-server --watch db.json -->
-<!-- <template>
+<template>
   <section>
       <div class="leaves">
           <div class="set">
@@ -84,8 +82,10 @@ export default {
       }
   }
 };
-</script> -->
-<template>
+</script>
+
+
+<!-- <template>
   <section>
       <div class="leaves">
           <div class="set">
@@ -156,7 +156,7 @@ export default {
       }
   }
 };
-</script>
+</script> -->
 
 <style scoped>
 * {
