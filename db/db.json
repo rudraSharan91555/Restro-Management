@@ -69,16 +69,10 @@
   ],
   "restaurant": [
     {
-      "id": "1",
-      "name": "KFC",
-      "address": "Noida Sector 50",
-      "contact": 9123456789
-    },
-    {
-      "id": "3",
       "name": "Burger King",
       "address": "Pune Banner",
-      "contact": 9123456787
+      "contact": 9123456787,
+      "id": "3"
     },
     {
       "id": "4",

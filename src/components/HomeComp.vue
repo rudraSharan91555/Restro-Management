@@ -99,6 +99,8 @@ h1 {
   background-color: #faf5e6; 
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(20px 20px 30px rgb(125, 186, 124));
+
 }
 
 .restaurant-table {
@@ -106,11 +108,15 @@ h1 {
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #ffffff; 
+  filter: drop-shadow(20px 20px 30px red);
+
 }
 
 .restaurant-table th,
 .restaurant-table td {
   padding: 12px;
+  filter: drop-shadow(20px 20px 30px rgb(209, 167, 167));
+
   text-align: left;
   border: 1px solid #d4d4d4; 
   transition: background-color 0.3s ease, font-weight 0.3s ease, transform 0.3s ease;
@@ -123,6 +129,8 @@ h1 {
 
 .restaurant-table tr:nth-child(even) {
   background-color: #f9f9f9; 
+  /* filter: drop-shadow(20px 20px 30px rgb(234, 167, 167)); */
+
 }
 
 .id-cell:hover,
@@ -172,11 +180,26 @@ h1 {
 
 .restaurant-card {
   background-color: #f9f9f9;
+  /* box-shadow: 20px 20px 30px red; */
+  /* filter: drop-shadow(20px 20px 30px red); */
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
   margin: 10px 0;
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.restaurant-card:hover {
+  filter: drop-shadow(20px 20px 20px rgb(233, 140, 140));
+  transform: scale(1.05); 
+  background-color: #ffd19a; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+}
+
+
+.restaurant-cards.active {
+  transform: scale(1.05); 
+  background-color: #ffd19a; /* Same effect as hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
 .card-actions {
@@ -241,7 +264,7 @@ h1 {
 @media (max-width: 480px) {
   .restaurant-card {
     padding: 12px;
-    background-color: #59cb9f;
+    background-color: #80ffce;
   }
   .restaurant-card:hover {
     transform: scale(1.05); 
